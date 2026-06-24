@@ -27,6 +27,9 @@ scissors = '''
 '''
 lst=[rock,paper,scissors]
 random_value=random.randint(0,2)
+print(" ")
+print("====ROCK PAPER SCISSORS====")
+print(" ")
 user_value=int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
 if user_value < 0 or user_value > 2:
     print("Invalid choice")
