@@ -40,8 +40,12 @@ def generatepw():
     newpassword = "".join(passwordkeys)
     return newpassword
 
+print("")
+print("===================================")
+print("Welcome to the Password Generator!")
+print("===================================")
 
-print("Welcome to the PyPassword Generator!")
+print("")
 
 password = generatepw()
 print(f"Your new password : {password}")
