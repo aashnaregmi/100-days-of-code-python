@@ -142,6 +142,7 @@ def increase_score(score):
 score=0
 a = random.randint(0, len(celebrity_list) - 1)
 
+
 while True:
     b = random.randint(0, len(celebrity_list) - 1)
 
@@ -153,33 +154,33 @@ while True:
 
     guess=input("Guess (A OR B):").lower()
 
-    max_follower = max(
+    # max_follower = max(
 
-        (celebrity_list[a]["followers"]),
+    #     (celebrity_list[a]["followers"]),
 
-        (celebrity_list[b]["followers"])
-    )
+    #     (celebrity_list[b]["followers"])
+    # )
+    
+       
+    if celebrity_list[a]["followers"] >celebrity_list[b]["followers"]:
+       correct="a"
+    else:
+      correct="b"
+       
+    
 
-    if guess == "a" and celebrity_list[a]["followers"] == max_follower:
+    if guess == correct:
 
         print("You are correct")
         score=increase_score(score)
         print(f"Score:{score}")
-
-    elif guess == "b" and celebrity_list[b]["followers"] == max_follower:
-
-        print("You are correct")
-        score = increase_score(score)
-        print(f"Score:{score}")
-
-
-
+        a = b
     else:
 
         print("You are wrong")
         break
 
-    a = b
+   
 
 
 
