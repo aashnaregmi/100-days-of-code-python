@@ -88,7 +88,7 @@ celebrity_list = [
         "name": "Victoria's Secret",
         "location": "Reynoldsburg, Ohio, USA",
         "work": "Fashion Brand",
-        "followers": 77_000_000
+        "followers": 77_000_00
     },
     {
         "name": "UEFA Champions League",
