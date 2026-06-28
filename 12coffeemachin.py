@@ -3,6 +3,7 @@ recources_needed={
          "water":50,
          "milk":0,
          "coffee":18,
+         "cost":1.50
          
     
   },
@@ -10,6 +11,7 @@ recources_needed={
          "water":200,
          "milk":150,
          "coffee":24,
+         "cost":2.50
          
     
   },
@@ -17,6 +19,7 @@ recources_needed={
          "water":250,
          "milk":100,
          "coffee":24,
+         "cost":3.00
     
   }
   
@@ -25,15 +28,16 @@ recources_needed={
 resources_available = {
     "water": 400,   
     "milk": 400,    
-    "coffee": 100,  
-    
+    "coffee": 100,   
 }
+money=0.0
 
 coins={
-  "quater":0.25,
+  "quarter":0.25,
   "dime":0.10,
   "nickel":0.05,
-  "penny":0.01
+  "penny":0.01,
+  
   
 }
 def welcome_msg():
@@ -56,7 +60,6 @@ print("• latte")
 print("• cappuccino")
 print("• report  - View machine resources")
 print("• off     - Turn off the coffee machine")
-
 print("=" * 45)
 def check_resources(order):
   for key in resources_available:
@@ -65,18 +68,58 @@ def check_resources(order):
         break
   else:
         return "enough"
+# def calculateamt(total_amt):
+def calculate_money(order,amt_received):
+    order_amt=recources_needed[order]["cost"]
+    if order_amt>amt_received:
+        print("The amount is not sufficient!!")
+        
+        return
+     
+    elif order_amt<amt_received:
+         returnmoney=round(amt_received-order_amt,2)
+         print(f"The returned amount :{returnmoney}")
+         print("Enjoy your order!!")
+         money=amt_received -returnmoney
+         print(money)
+    else:
+         print("Enjoy your order!!")
+         return
+        
+     
     
 def ask_coin():
     print("\nPlease insert coins.")
-    quarters = int(input("How many quarters?: "))
-    dimes = int(input("How many dimes?: "))
-    nickels = int(input("How many nickels?: "))
-    pennies = int(input("How many pennies?: "))  
+    quarters_amt = float(input("How many quarters?: "))
+    dimes_amt = float(input("How many dimes?: "))
+    nickels_amt= float(input("How many nickels?: "))
+    pennies_amt = float(input("How many pennies?: "))  
+    total_amt = (
+    quarters_amt * coins["quarter"] +
+    dimes_amt * coins["dime"] +
+    nickels_amt * coins["nickel"] +
+    pennies_amt * coins["penny"]
+)   
+    total_amt=round(total_amt,2)
+    print(total_amt)
+    return total_amt
+    
+    
+def report_status():
+    for key in resources_available:
+        print(f"{key}: {resources_available[key]}")
+    print(f"money :{money}")
+    
+    
 
 def process_order(order):
+    if order =="r":
+       report_status()
+       
     resources_status=check_resources(order)
     if resources_status =="enough":
-       ask_coin()
+       total_amt_received= ask_coin()
+       calculate_money(order,total_amt_received)
     
     
 
@@ -85,6 +128,7 @@ while True:
   order=input("What is your order(Espresso,Latte,Cappuccino)?").lower()
   process_order(order)
   print("end")
+  
   
  
 
