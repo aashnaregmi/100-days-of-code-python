@@ -59,16 +59,24 @@ print("• off     - Turn off the coffee machine")
 
 print("=" * 45)
 def check_resources(order):
-    print(recources_needed[order])
-    if recources_needed[order]["water"]>resources_available["water"]:
-       print("not enough")
-    else:
-       print("enough")
+  for key in resources_available:
+    if recources_needed[order][key]>resources_available[key]:
+        print(f"Sorry there is not enough {key}.")
+        break
+  else:
+        return "enough"
     
-    
+def ask_coin():
+    print("\nPlease insert coins.")
+    quarters = int(input("How many quarters?: "))
+    dimes = int(input("How many dimes?: "))
+    nickels = int(input("How many nickels?: "))
+    pennies = int(input("How many pennies?: "))  
 
 def process_order(order):
-    check_resources(order)
+    resources_status=check_resources(order)
+    if resources_status =="enough":
+       ask_coin()
     
     
 
@@ -76,6 +84,7 @@ while True:
   welcome_msg()
   order=input("What is your order(Espresso,Latte,Cappuccino)?").lower()
   process_order(order)
+  print("end")
   
  
 
